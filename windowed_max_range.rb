@@ -48,8 +48,8 @@ class MyStack
     @store.pop
   end
 
-  def push
-    @store.push
+  def push(n)
+    @store.push(n)
   end
 
   def peek
@@ -67,22 +67,23 @@ end
 
 class StackQueue
   def initialize
-
+    @outstack = MyStack.new
+    @instack = MyStack.new
   end
 
-  def enqueue
-
+  def enqueue(n)
+    @instack.push(n)
   end
 
   def dequeue
-
+    @outstack.push(@instack.pop) unless @instack.empty?
   end
 
   def size
-
+    @instack.size + @outstack.size
   end
 
   def empty?
-
+    @instack.empty? && @outstack.empty?
   end
 end
